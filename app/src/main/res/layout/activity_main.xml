@@ -10,25 +10,97 @@
 
     <TextView
         android:id="@+id/questionText"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/solid_color_shape_question"
+        android:elevation="6dp"
+        android:gravity="center"
         android:text="@string/default_question"
         android:textAlignment="center"
-        android:textSize="@dimen/font_size"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="24dp"
-        tools:layout_editor_absoluteY="29dp" />
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="@dimen/font_size_big"
+        app:layout_constraintBottom_toBottomOf="@+id/answerText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/answerText"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/answerText"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="200dp"
+        android:layout_marginTop="29dp"
+        android:background="@drawable/solid_color_shape_answer"
         android:gravity="center"
-        android:text="@string/default_answer"
+        android:text="@string/default_answer_correct"
         android:textAlignment="center"
-        android:textSize="@dimen/font_size"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/font_size_big"
         android:visibility="invisible"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="24dp"
-        tools:layout_editor_absoluteY="29dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/answerChoice1"
+            android:layout_width="360dp"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="137dp"
+            android:background="@color/light_blue"
+            android:gravity="center"
+            android:text="@string/default_answer_choice1"
+            android:textAlignment="center"
+            android:textColor="@color/indigo"
+            android:textSize="@dimen/font_size_small" />
+
+        <TextView
+            android:id="@+id/answerChoice2"
+            android:layout_width="360dp"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="211dp"
+            android:background="@color/light_blue"
+            android:gravity="center"
+            android:text="@string/default_answer_choice2"
+            android:textAlignment="center"
+            android:textColor="@color/indigo"
+            android:textSize="@dimen/font_size_small" />
+
+        <TextView
+            android:id="@+id/answerCorrect"
+            android:layout_width="360dp"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="66dp"
+            android:background="@color/light_blue"
+            android:gravity="center"
+            android:text="@string/default_answer_correct"
+            android:textAlignment="center"
+            android:textColor="@color/indigo"
+            android:textSize="@dimen/font_size_small" />
+
+        <ImageView
+            android:id="@+id/toggleVisibility"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="17dp"
+            app:srcCompat="@drawable/invisible_icon" />
+
+    </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
