@@ -1,9 +1,11 @@
 package com.example.footballfan.flashcardapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -76,5 +78,26 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.addIcon).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AddCardActivity.class);
+                MainActivity.this.startActivityForResult(intent, 100);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == 100)
+        {
+            String question = data.getExtras().getString("question");
+            TextView q = (TextView) findViewById(R.id.questionText);
+            q.setText(question);
+
+            String answer = data.getExtras().getString("answer");
+            TextView a = (TextView) findViewById(R.id.answerText);
+            a.setText(answer);
+        }
     }
 }

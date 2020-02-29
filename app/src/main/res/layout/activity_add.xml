@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/yellow_green"
+    tools:layout_editor_absoluteY="81dp">
+
+    <ImageView
+        android:id="@+id/removeIcon"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="39dp"
+        android:layout_marginEnd="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/saveIcon"
+        app:srcCompat="@drawable/ic_remove_icon" />
+
+    <EditText
+        android:id="@+id/questionInput"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:textSize="@dimen/font_size_small"
+        android:layout_marginBottom="26dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Type a question"
+        android:inputType="textMultiLine"
+        app:layout_constraintBottom_toTopOf="@+id/answerInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/answerInput"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:textSize="@dimen/font_size_small"
+        android:layout_marginBottom="291dp"
+        android:ems="10"
+        android:hint="Type the answer"
+        android:inputType="textMultiLine"
+        app:layout_constraintBottom_toTopOf="@+id/saveIcon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/questionInput" />
+
+    <ImageView
+        android:id="@+id/saveIcon"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginEnd="206dp"
+        android:layout_marginStart="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/removeIcon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/answerInput"
+        app:srcCompat="@drawable/ic_save_icon" />
+</android.support.constraint.ConstraintLayout>

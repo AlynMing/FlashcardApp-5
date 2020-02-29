@@ -11,4 +11,5 @@
     <color name="light_purple">#bb93e8</color>
     <color name="wrong_answer">#fa4e3f</color>
     <color name="correct_answer">#51a056</color>
+    <color name="yellow_green">#d2f799</color>
 </resources>
