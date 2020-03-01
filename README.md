@@ -6,7 +6,7 @@
 A simple flashcard app that displays a question and three answer choices. Incorrect answers will be highlighted in red and correct answers will be highlighted in green. You can add new cards and as well as edit existing cards.
 
 ### App Walk-though
-<img src="flashcardApp_Lab2.gif" width=200><br>       
+<img src="flashcardApp_Lab2gif.gif" width=200><br>        <img src="flashcardApp_Lab2_2gif.gif" width=200><br>
 
 ## Required
 - [x] User can click on a ‘+’ button that takes the user to new ‘Add Card Screen’
