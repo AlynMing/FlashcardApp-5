@@ -1,5 +1,31 @@
 ## Flashcard App
 
+## Lab 2
+
+### App Description
+A simple flashcard app that displays a question and three answer choices. Incorrect answers will be highlighted in red and correct answers will be highlighted in green. You can add new cards and as well as edit existing cards.
+
+### App Walk-though
+`TODO://` Add the URL to your animated app walk-though `gif` in the image tag below. Make sure the gif actually renders and animates when viewing this README. (☝️ Remove this paragraph after after adding gif)
+
+<img src="flashcardApp_Lab2.gif" width=200><br>        <img src="flashcardApp_Lab2_2.gif" width=200><br>
+
+## Required
+- [x] User can click on a ‘+’ button that takes the user to new ‘Add Card Screen’
+- [x] The 'Add Card Screen' has a cancel button to take the user back to the main screen
+- [x] User can enter and submit a Question and Answer through the 'Add Card Screen'
+- [x] User will see the card they just created on the main screen when they press the 'Save Button'
+- [x] Push your progress to GitHub!
+
+## Optional
+- [x] User can edit a card
+- [x] An error message is shown if the user doesn't enter both a Question and an Answer
+- [x] A notification is shown if the card was created successfully
+- [x] User can also enter multiple choice answers when creating a card
+- [x] App is further styled and customized!
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
 ## Lab 1
 
 ### App Description
