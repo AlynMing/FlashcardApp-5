@@ -11,15 +11,33 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
     private boolean showingAnswers = true;
+    private FlashcardDatabase flashcardDB;
+    private List<Flashcard> flashcards;
+    private Flashcard cardEditing = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        flashcardDB = new FlashcardDatabase(getApplicationContext());
+        flashcards = flashcardDB.getAllCards();
+        if((flashcards != null) && (flashcards.size() > 0))
+        {
+            int cardIdx = getRandNum(0, flashcards.size() - 1);
+            ((TextView) findViewById(R.id.questionText)).setText(flashcards.get(cardIdx).getQuestion());
+            ((TextView) findViewById(R.id.answerText)).setText(flashcards.get(cardIdx).getAnswer());
+            ((TextView) findViewById(R.id.answerCorrect)).setText(flashcards.get(cardIdx).getAnswer());
+            ((TextView) findViewById(R.id.answerChoice1)).setText(flashcards.get(cardIdx).getWrongAnswer1());
+            ((TextView) findViewById(R.id.answerChoice2)).setText(flashcards.get(cardIdx).getWrongAnswer2());
+        }
 
         findViewById(R.id.questionText).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,7 +122,35 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("wrongAnswer1", a2);
                 intent.putExtra("wrongAnswer2", a3);
                 intent.putExtra("is_editing", "true");
+                cardEditing = findCard(curQ);
                 MainActivity.this.startActivityForResult(intent, 200);
+            }
+        });
+
+        findViewById(R.id.nextButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(flashcards.size() > 0) {
+                    showNextCard();
+                }
+                else {
+                    showEmptyState();
+                }
+            }
+        });
+
+        findViewById(R.id.deleteButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                flashcardDB.deleteCard(((TextView) findViewById(R.id.questionText)).getText().toString());
+                flashcards = flashcardDB.getAllCards();
+                // if any cards left in database, show next card; otherwise, show "empty state"
+                if(flashcards.size() > 0) {
+                    showNextCard();
+                }
+                else {
+                    showEmptyState();
+                }
             }
         });
     }
@@ -125,6 +171,21 @@ public class MainActivity extends AppCompatActivity {
                 TextView answer = (TextView) findViewById(R.id.answerText);
                 answer.setText(correctAnswer);
 
+                if(cardEditing == null) {
+                    // creating new flashcard
+                    flashcardDB.insertCard(new Flashcard(question, correctAnswer, wrongAnswer1, wrongAnswer2));
+                }
+                else {
+                    // editing existing flashcard
+                    cardEditing.setQuestion(question);
+                    cardEditing.setAnswer(correctAnswer);
+                    cardEditing.setWrongAnswer1(wrongAnswer1);
+                    cardEditing.setWrongAnswer2(wrongAnswer2);
+                    flashcardDB.updateCard(cardEditing);
+                    cardEditing = null;
+                }
+                flashcards = flashcardDB.getAllCards();
+
                 // place answer choices randomly
                 TextView a1 = (TextView) findViewById(R.id.answerCorrect);
                 a1.setText(correctAnswer);
@@ -142,5 +203,53 @@ public class MainActivity extends AppCompatActivity {
                 Snackbar.make(findViewById(R.id.questionText), "Card successfully created", Snackbar.LENGTH_SHORT).show();
             }
         }
+    }
+
+    private void resetView()
+    {
+        // show flashcard with question side up, answer on back
+        if(findViewById(R.id.questionText).getVisibility() == View.INVISIBLE) {
+            findViewById(R.id.questionText).setVisibility(View.VISIBLE);
+            findViewById(R.id.answerText).setVisibility(View.INVISIBLE);
+        }
+    }
+
+    private void showNextCard()
+    {
+        int cardIdx = getRandNum(0, flashcards.size() - 1);
+        ((TextView) findViewById(R.id.questionText)).setText(flashcards.get(cardIdx).getQuestion());
+        ((TextView) findViewById(R.id.answerText)).setText(flashcards.get(cardIdx).getAnswer());
+        ((TextView) findViewById(R.id.answerCorrect)).setText(flashcards.get(cardIdx).getAnswer());
+        ((TextView) findViewById(R.id.answerChoice1)).setText(flashcards.get(cardIdx).getWrongAnswer1());
+        ((TextView) findViewById(R.id.answerChoice2)).setText(flashcards.get(cardIdx).getWrongAnswer2());
+        resetView();
+    }
+
+    private void showEmptyState()
+    {
+        ((TextView) findViewById(R.id.questionText)).setText("Your flashcard deck is currently empty :(");
+        ((TextView) findViewById(R.id.answerText)).setText("Add a card!");
+        ((TextView) findViewById(R.id.answerCorrect)).setText("");
+        ((TextView) findViewById(R.id.answerChoice1)).setText("");
+        ((TextView) findViewById(R.id.answerChoice2)).setText("");
+        resetView();
+    }
+
+    private int getRandNum(int min, int max)
+    {
+        Random rand = new Random();
+        return rand.nextInt((max - min) + 1) + min;
+    }
+
+    private Flashcard findCard(String question)
+    {
+        for(Flashcard card : flashcards)
+        {
+            if(card.getQuestion().equals(question))
+            {
+                return card;
+            }
+        }
+        return flashcards.get(0);
     }
 }
