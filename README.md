@@ -1,5 +1,29 @@
 ## Flashcard App
 
+## Lab 3
+
+### App Description
+A simple flashcard app that displays a random question and three answer choices. Incorrect answers will be highlighted in red and correct answers will be highlighted in green. You can add new cards and as well as edit existing cards. Flashcards are persisted in a database so users can continue studying when they return to the app. There is a handy next button to move to a new flashcard.
+
+### App Walk-though
+`TODO://` Add the URL to your animated app walk-though `gif` in the image tag below. Make sure the gif actually renders and animates when viewing this README. (☝️ Remove this paragraph after after adding gif)
+
+<img src="YOUR_GIF_URL_HERE" width=200><br>
+
+`TODO://` In the User stories section below, add an `x` between the `-[ ]` like this `- [x]` for any user story you complete. (☝️ Remove this paragraph after after checking off user stories)
+
+## Required
+- [x] User can create a card and still see their created card when the app is relaunched.
+- [x] User can create muliple cards and browse through all created cards
+
+## Optional
+- [x] User can delete a card and no longer see it in their deck anymore
+- [x] Flashcards are shown in random order instead of the order they were created in
+- [x] User can edit a card and see the edit saved when they browse through their deck of cards
+- [x] User can create flashcards with multiple answers and be able to browse through cards with multiple choice answers shown
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
 ## Lab 2
 
 ### App Description
