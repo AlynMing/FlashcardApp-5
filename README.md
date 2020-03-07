@@ -1,5 +1,53 @@
 ## Flashcard App
 
+## Lab 3
+
+### App Description
+A simple flashcard app that displays a random question and three answer choices. Incorrect answers will be highlighted in red and correct answers will be highlighted in green. You can add new cards and as well as edit existing cards. Flashcards are persisted in a database so users can continue studying when they return to the app. There is a handy next button to move to a new flashcard.
+
+### App Walk-though
+`TODO://` Add the URL to your animated app walk-though `gif` in the image tag below. Make sure the gif actually renders and animates when viewing this README. (☝️ Remove this paragraph after after adding gif)
+
+<img src="YOUR_GIF_URL_HERE" width=200><br>
+
+`TODO://` In the User stories section below, add an `x` between the `-[ ]` like this `- [x]` for any user story you complete. (☝️ Remove this paragraph after after checking off user stories)
+
+## Required
+- [x] User can create a card and still see their created card when the app is relaunched.
+- [x] User can create muliple cards and browse through all created cards
+
+## Optional
+- [x] User can delete a card and no longer see it in their deck anymore
+- [x] Flashcards are shown in random order instead of the order they were created in
+- [x] User can edit a card and see the edit saved when they browse through their deck of cards
+- [x] User can create flashcards with multiple answers and be able to browse through cards with multiple choice answers shown
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+## Lab 2
+
+### App Description
+A simple flashcard app that displays a question and three answer choices. Incorrect answers will be highlighted in red and correct answers will be highlighted in green. You can add new cards and as well as edit existing cards.
+
+### App Walk-though
+<img src="flashcardApp_Lab2gif.gif" width=200><br>        <img src="flashcardApp_Lab2_2gif.gif" width=200><br>
+
+## Required
+- [x] User can click on a ‘+’ button that takes the user to new ‘Add Card Screen’
+- [x] The 'Add Card Screen' has a cancel button to take the user back to the main screen
+- [x] User can enter and submit a Question and Answer through the 'Add Card Screen'
+- [x] User will see the card they just created on the main screen when they press the 'Save Button'
+- [x] Push your progress to GitHub!
+
+## Optional
+- [x] User can edit a card
+- [x] An error message is shown if the user doesn't enter both a Question and an Answer
+- [x] A notification is shown if the card was created successfully
+- [x] User can also enter multiple choice answers when creating a card
+- [x] App is further styled and customized!
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
 ## Lab 1
 
 ### App Description
