@@ -48,6 +48,7 @@ public class AddCardActivity extends AppCompatActivity {
                 intent.putExtra("cancelled", "true");
                 setResult(RESULT_OK, intent);
                 finish();
+                overridePendingTransition(R.anim.left_out, R.anim.right_in);
             }
         });
 
@@ -79,6 +80,7 @@ public class AddCardActivity extends AppCompatActivity {
                     setResult(RESULT_OK, intent);
                     finish();
                 }
+                overridePendingTransition(R.anim.left_out, R.anim.right_in);
             }
         });
     }
