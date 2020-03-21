@@ -1,16 +1,17 @@
 package com.example.footballfan.flashcardapp;
 
-import android.animation.Animator;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.ViewAnimationUtils;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.plattysoft.leonids.ParticleSystem;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,12 +25,27 @@ public class MainActivity extends AppCompatActivity {
     private FlashcardDatabase flashcardDB;
     private List<Flashcard> flashcards;
     private Flashcard cardEditing = null;
+    private CountDownTimer countdown;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        countdown = new CountDownTimer(16000, 1000) {
+            public void onTick(long millisUntilFinished) {
+                TextView timerText = ((TextView) findViewById(R.id.timer));
+                if(millisUntilFinished < 6000)
+                    timerText.setTextColor(getResources().getColor(R.color.wrong_answer));  // red text alert when time almost out
+                else
+                    timerText.setTextColor(getResources().getColor(R.color.dark_purple));
+                timerText.setText("" + millisUntilFinished / 1000);
+            }
+
+            public void onFinish() {
+            }
+        };
 
         flashcardDB = new FlashcardDatabase(getApplicationContext());
         flashcards = flashcardDB.getAllCards();
@@ -46,32 +62,58 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.questionText).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                View questionSideView = findViewById(R.id.questionText);
-                questionSideView.setVisibility(View.INVISIBLE);
-                View answerSideView = findViewById(R.id.answerText);
-                answerSideView.setVisibility(View.VISIBLE);
+                final View questionSideView = findViewById(R.id.questionText);
+                final View answerSideView = findViewById(R.id.answerText);
 
-                // transition to display answer: circular
-
-                // get the center for the clipping circle
-                int cx = answerSideView.getWidth() / 2;
-                int cy = answerSideView.getHeight() / 2;
-
-                // get the final radius for the clipping circle
-                float finalRadius = (float) Math.hypot(cx, cy);
-
-                // create the animator for this view (the start radius is zero)
-                Animator anim = ViewAnimationUtils.createCircularReveal(answerSideView, cx, cy, 0f, finalRadius);
-                anim.setDuration(1000);
-                anim.start();
+                findViewById(R.id.questionText).setCameraDistance(10000);
+                findViewById(R.id.answerText).setCameraDistance(10000);
+                questionSideView.animate()
+                        .rotationY(90)
+                        .setDuration(200)
+                        .withEndAction(
+                                new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        questionSideView.setVisibility(View.INVISIBLE);
+                                        findViewById(R.id.answerText).setVisibility(View.VISIBLE);
+                                        // second quarter turn
+                                        findViewById(R.id.answerText).setRotationY(-90);
+                                        findViewById(R.id.answerText).animate()
+                                                .rotationY(0)
+                                                .setDuration(200)
+                                                .start();
+                                    }
+                                }
+                        ).start();
             }
         });
 
         findViewById(R.id.answerText).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                findViewById(R.id.answerText).setVisibility(View.INVISIBLE);
-                findViewById(R.id.questionText).setVisibility(View.VISIBLE);
+                final View questionSideView = findViewById(R.id.questionText);
+                final View answerSideView = findViewById(R.id.answerText);
+
+                findViewById(R.id.questionText).setCameraDistance(25000);
+                findViewById(R.id.answerText).setCameraDistance(25000);
+                answerSideView.animate()
+                        .rotationY(90)
+                        .setDuration(100)
+                        .withEndAction(
+                                new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        answerSideView.setVisibility(View.INVISIBLE);
+                                        findViewById(R.id.questionText).setVisibility(View.VISIBLE);
+                                        // second quarter turn
+                                        findViewById(R.id.questionText).setRotationY(-90);
+                                        findViewById(R.id.questionText).animate()
+                                                .rotationY(0)
+                                                .setDuration(100)
+                                                .start();
+                                    }
+                                }
+                        ).start();
             }
         });
 
@@ -79,6 +121,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 findViewById(R.id.answerCorrect).setBackgroundColor(getResources().getColor(R.color.correct_answer));
+                new ParticleSystem(MainActivity.this, 100, R.drawable.confetti, 3000)
+                        .setSpeedRange(0.2f, 0.5f)
+                        .oneShot(findViewById(R.id.answerCorrect), 100);
             }
         });
 
@@ -180,9 +225,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-
-
                 findViewById(R.id.questionText).startAnimation(leftOutAnim);
+                startTimer();
             }
         });
 
@@ -200,6 +244,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        startTimer();  // for first card when app loads
     }
 
     @Override
@@ -255,10 +301,16 @@ public class MainActivity extends AppCompatActivity {
     private void resetView()
     {
         // show flashcard with question side up, answer on back
-        if(findViewById(R.id.questionText).getVisibility() == View.INVISIBLE) {
+        if(findViewById(R.id.questionText).getVisibility() == View.INVISIBLE)
+        {
             findViewById(R.id.questionText).setVisibility(View.VISIBLE);
             findViewById(R.id.answerText).setVisibility(View.INVISIBLE);
         }
+
+        // reset answer background colors
+        findViewById(R.id.answerChoice1).setBackgroundColor(getResources().getColor(R.color.light_blue));
+        findViewById(R.id.answerChoice2).setBackgroundColor(getResources().getColor(R.color.light_blue));
+        findViewById(R.id.answerCorrect).setBackgroundColor(getResources().getColor(R.color.light_blue));
     }
 
     private void showNextCard()
@@ -298,5 +350,10 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         return flashcards.get(0);
+    }
+
+    private void startTimer() {
+        countdown.cancel();
+        countdown.start();
     }
 }

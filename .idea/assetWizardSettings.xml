@@ -18,7 +18,9 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="foregroundImage" value="C:\Users\Football Fan\AndroidStudioProjects\FlashcardApp\app\app_icon.svg" />
+                                      <entry key="backgroundAssetType" value="COLOR" />
+                                      <entry key="backgroundColor" value="cbca32" />
+                                      <entry key="foregroundImage" value="C:\Users\Football Fan\Downloads\app_icon.svg" />
                                     </map>
                                   </option>
                                 </PersistentState>
