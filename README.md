@@ -5,7 +5,7 @@
 ### App Description
 A simple flashcard app that displays a random question and three answer choices. Incorrect answers will be highlighted in red and correct answers will be highlighted in green. You can add new cards and as well as edit existing cards. Flashcards are persisted in a database so users can continue studying when they return to the app. There is a handy next button to move to a new flashcard. There is a countdown timer to make the app more fun. Styling includes card flipping and transition animations.
 
-### App Walk-though
+### App Walk-through
 <img src="flashcardApp_Lab4.gif" width=200><br>
 
 ## Required
@@ -26,7 +26,7 @@ A simple flashcard app that displays a random question and three answer choices.
 ### App Description
 A simple flashcard app that displays a random question and three answer choices. Incorrect answers will be highlighted in red and correct answers will be highlighted in green. You can add new cards and as well as edit existing cards. Flashcards are persisted in a database so users can continue studying when they return to the app. There is a handy next button to move to a new flashcard.
 
-### App Walk-though
+### App Walk-through
 <img src="flashcardApp_Lab3.gif" width=200><br>
 
 ## Required
@@ -46,7 +46,7 @@ A simple flashcard app that displays a random question and three answer choices.
 ### App Description
 A simple flashcard app that displays a question and three answer choices. Incorrect answers will be highlighted in red and correct answers will be highlighted in green. You can add new cards and as well as edit existing cards.
 
-### App Walk-though
+### App Walk-through
 <img src="flashcardApp_Lab2gif.gif" width=200><br>        <img src="flashcardApp_Lab2_2gif.gif" width=200><br>
 
 ## Required
@@ -70,7 +70,7 @@ A simple flashcard app that displays a question and three answer choices. Incorr
 ### App Description
 A simple flashcard app that displays a question and three answer choice for the user to pick from. Incorrect answers will be highlighted in red and correct answers will be highlighted in green. You can also toggle the visibility of the answer choices.
 
-### App Walk-though
+### App Walk-through
 <img src="flashcardApp_Lab1.gif" width=200><br>
 
 ## Required
